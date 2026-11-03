@@ -1,0 +1,46 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "gravyard"
+version = "0.1.0"
+description = "Personal, modular cybersecurity toolkit — authorized use only"
+readme = "README.md"
+requires-python = ">=3.10"
+license = { text = "MIT" }
+authors = [{ name = "gravyard" }]
+
+[project.scripts]
+gravyard = "core.cli:main"
+
+[project.optional-dependencies]
+crypto = [
+    "cryptography>=41.0",
+    "argon2-cffi>=23.1",
+    "PyJWT>=2.8",
+    "Pillow>=10.0",
+    "requests>=2.31",
+]
+webtest = ["requests>=2.31", "beautifulsoup4>=4.12"]
+screenshot = ["playwright>=1.40"]
+crawler = ["requests>=2.31", "beautifulsoup4>=4.12"]
+crawler-docs = ["PyMuPDF>=1.24", "openpyxl>=3.1"]
+crawler-graph = ["networkx>=3.0"]
+network = ["scapy>=2.5"]
+forensics = ["yara-python>=4.4"]
+reverse = ["capstone>=5.0"]
+reverse-angr = ["angr>=9.2"]
+reverse-yara = ["yara-python>=4.4"]
+
+[tool.setuptools.packages.find]
+include = [
+    "core*",
+    "crypto*",
+    "webtest*",
+    "crawler*",
+    "network*",
+    "forensics*",
+    "reverse*",
+]
+# research/ and redteam-lab/ are standalone-script folders, not importable packages.
